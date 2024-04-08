@@ -4,6 +4,7 @@ Requires=podman.socket
 
 [Service]
 Restart=always
+ExecStartPre=/usr/bin/unshare /bin/chgrp 1001 %t/podman/podman.sock
 
 [Container]
 AutoUpdate=local
