@@ -1,3 +1,5 @@
 runner-config-files/*/credentials
 runner-config-files/*/credentials_rsaparams
 runner-config-files/*/runner
+runner-config-files/*/job_started.sh
+*.swp

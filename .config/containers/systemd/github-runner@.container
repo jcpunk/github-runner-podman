@@ -7,14 +7,14 @@ Restart=always
 ExecStartPre=/usr/bin/podman unshare /bin/chgrp 1001 %t/podman/podman.sock
 
 [Container]
-AutoUpdate=local
-DropCapability=ALL
+AutoUpdate=registry
+AddDevice=/dev/fuse
+SecurityLabelDisable=true
 User=1001
 Group=1001
-ContainerName=%i-github-runner
 HostName=%H
+ContainerName=%i-github-runner
 LogDriver=journald
-NoNewPrivileges=true
 Pull=missing
 ReadOnly=false
 
@@ -24,6 +24,8 @@ Volume=/home/github/runner-config-files/%i/credentials:/home/runner/.credentials
 Volume=/home/github/runner-config-files/%i/credentials_rsaparams:/home/runner/.credentials_rsaparams:rw,z
 Volume=/home/github/runner-config-files/%i/runner:/home/runner/.runner:rw,z
 
+Volume=/home/github/runner-config-files/%i/job_started.sh:/opt/github-runner/job_started.sh:ro,z
+Environment=ACTIONS_RUNNER_HOOK_JOB_STARTED=/opt/github-runner/job_started.sh
 Exec=/home/runner/run.sh
 
 [Install]
