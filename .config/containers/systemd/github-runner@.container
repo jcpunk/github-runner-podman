@@ -8,10 +8,10 @@ ExecStartPre=/usr/bin/podman unshare /bin/chgrp 1001 %t/podman/podman.sock
 
 [Container]
 AutoUpdate=registry
-AddDevice=/dev/fuse
 SecurityLabelDisable=true
 User=1001
 Group=1001
+PodmanArgs=--group-add=27
 HostName=%H
 ContainerName=%i-github-runner
 LogDriver=journald
