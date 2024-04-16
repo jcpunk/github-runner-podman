@@ -19,11 +19,12 @@ ReadOnly=false
 
 Image=ghcr.io/actions/actions-runner:latest
 Volume=%t/podman/podman.sock:/var/run/docker.sock:rw,Z
-Volume=/home/github/runner-config-files/credentials:/home/runner/.credentials:rw,z
-Volume=/home/github/runner-config-files/credentials_rsaparams:/home/runner/.credentials_rsaparams:rw,z
-Volume=/home/github/runner-config-files/runner:/home/runner/.runner:rw,z
+Volume=/home/github/runner-config-files/%i/credentials:/home/runner/.credentials:rw,z
+Volume=/home/github/runner-config-files/%i/credentials_rsaparams:/home/runner/.credentials_rsaparams:rw,z
+Volume=/home/github/runner-config-files/%i/runner:/home/runner/.runner:rw,z
 
 Exec=/home/runner/run.sh
 
 [Install]
 WantedBy=default.target
+DefaultInstance=default
